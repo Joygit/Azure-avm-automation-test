@@ -5,16 +5,16 @@ output "automation_account_id" {
 
 output "automation_account_name" {
   description = "The name of the created Automation account."
-  value       = module.automation_account.name
+  value       = var.automation_account_name
 }
 
-output "automation_account_dsc_server_endpoint" {
-  description = "The DSC server endpoint of the created Automation account."
-  value       = module.automation_account.resource.dsc_server_endpoint
-}
+#output "automation_account_dsc_server_endpoint" {
+#  description = "DSC endpoint"
+#  value       = data.azurerm_automation_account.aa.dsc_server_endpoint
+#}
 
-output "automation_account_dsc_primary_access_key" {
-  description = "The primary access key for the DSC server of the created Automation account."
-  value       = module.automation_account.resource.dsc_primary_access_key
-  sensitive   = true
-}
+#output "automation_account_dsc_primary_access_key" {
+#  description = "DSC primary key"
+#  value       = data.azurerm_automation_account.aa.dsc_primary_access_key
+#  sensitive   = true
+#}

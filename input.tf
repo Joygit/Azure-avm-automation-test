@@ -18,10 +18,10 @@ variable "automation_account_name" {
   description = "The name of the Automation account to be created."
 }
 
-variable "automation_account_id" {
-  type        = string
-  description = "The ID of the Automation account to be created."
-}
+#variable "automation_account_id" {
+#  type        = string
+#  description = "The ID of the Automation account to be created."
+#}
 
 variable "sku_name" {
   type        = string
