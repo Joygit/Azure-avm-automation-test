@@ -13,6 +13,9 @@ module "automation_account" {
   managed_identities = var.user_assigned_identity_id != null ? {
     system_assigned_identity  = false
     user_assigned_resource_id = [var.user_assigned_identity_id]
-  } : {}
+  } : {
+    system_assigned_identity  = true
+  }
+
   tags = var.tags
 }
