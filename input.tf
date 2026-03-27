@@ -40,11 +40,40 @@ variable "local_authentication_enabled" {
   default     = false
 }
 
-variable "user_assigned_identity_id" {
-  type        = string
-  description = "The ID of the user-assigned managed identity to be associated with the Automation account."
-  default     = null
+variable "system_assigned_identity" {
+  type = bool
+  description = "Whether to enable System Assigned Managed Identity on the Automation Account."
+  default = true  
 }
+
+variable "user_assigned_identity_ids" {
+  type        = set(string)
+  description = "The IDs of the user-assigned managed identities to be associated with the Automation account."
+  default     = []
+}
+
+variable "automation_runbooks" {
+  type        = map(object({
+    name                = string    
+    log_verbose         = optional(bool, false)
+    log_progress        = optional(bool, false)
+    description         = optional(string, null)
+    content             = optional(string, "")
+    runbook_type        = optional(string, "") # Possible values: PowerShell, PowerShellWorkflow, Graph, Python2, Python3
+  }))
+  description = "A list of runbooks to be created in the Automation account."
+  default     = {}
+}
+
+variable "automation_hybrid_runbook_worker_groups" {
+  type        = map(object({
+    name        = string
+    credential_name = optional(string, null)
+  }))
+  description = "A list of Hybrid Runbook Worker groups to be created in the Automation account."
+  default     = {}
+}
+
 
 variable "tags" {
   type        = map(string)

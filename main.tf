@@ -10,9 +10,14 @@ module "automation_account" {
   public_network_access_enabled = var.public_network_access_enabled
   local_authentication_enabled  = var.local_authentication_enabled
 
-  managed_identities = var.user_assigned_identity_id != null ? {
-    system_assigned_identity  = false
-    user_assigned_resource_id = [var.user_assigned_identity_id]
-  } : {}
+  managed_identities = {
+    system_assigned = var.system_assigned_identity
+    user_assigned_resource_ids = var.user_assigned_identity_ids
+  }
+
+  automation_runbooks = var.automation_runbooks
+    
+  automation_hybrid_runbook_worker_groups =  var.automation_hybrid_runbook_worker_groups
+    
   tags = var.tags
 }
