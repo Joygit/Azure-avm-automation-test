@@ -60,6 +60,7 @@ variable "automation_runbooks" {
     description         = optional(string, null)
     content             = optional(string, "")
     runbook_type        = optional(string, "") # Possible values: PowerShell, PowerShellWorkflow, Graph, Python2, Python3
+    runtime             = optional(string, "")
   }))
   description = "A list of runbooks to be created in the Automation account."
   default     = {}
